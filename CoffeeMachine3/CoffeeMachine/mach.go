@@ -20,7 +20,7 @@ const coffeeMenu = "Выберите пункт:" +
 
 var espStat int
 var capStat int
-var bamzStat int
+var mokaStat int
 var risStat int
 var amerStat int
 
@@ -56,12 +56,14 @@ func CoffeeItem(m *Machine){
 	fmt.Scanln(&coffeeItem)
 
 	for{
-		if m.Coffee<50 || m.Water<50||m.Milk<50 ||m.Cup<1{
+		if m.Coffee<50 || m.Water<50||m.Milk<50 ||m.Cup<1 {
+			fmt.Println("Пополнение ресурсов...\n")
+			m.ReplenishRes()
+
+		}else{
 			switch coffeeItem {
 		case 1:
-				fmt.Println("Пополнение ресурсов...\n")
 				time.Sleep(5* time.Second)
-				m.ReplenishRes()
 				espStat++
 				fmt.Println("Приготовление...\n")
 				time.Sleep(3* time.Second)
@@ -70,21 +72,17 @@ func CoffeeItem(m *Machine){
 			break
 
 		case 2:
-				fmt.Println("Пополнение ресурсов...\n")
-				time.Sleep(5 * time.Second)
-				m.ReplenishRes()
+				time.Sleep(1 * time.Second)
 				capStat++
 				fmt.Println("Приготовление...\n")
-				time.Sleep(3 * time.Second)
+				time.Sleep(2 * time.Second)
 				m.CoffeeGive(30, 50, 50, 100, 1)
 				fmt.Print("Коффе готово\n")
 			break
 
 		case 3:
-				fmt.Println("Пополнение ресурсов...\n")
-				time.Sleep(5 * time.Second)
-				m.ReplenishRes()
-				bamzStat++
+				time.Sleep(3 * time.Second)
+				mokaStat++
 				fmt.Println("Приготовление...\n")
 				time.Sleep(3* time.Second)
 				m.CoffeeGive(50, 50, 50, 75, 1)
@@ -92,9 +90,8 @@ func CoffeeItem(m *Machine){
 			break
 
 		case 4:
-				fmt.Println("Пополнение ресурсов...\n")
-				time.Sleep(5 * time.Second)
-				m.ReplenishRes()
+				time.Sleep(4 * time.Second)
+
 				risStat++
 				fmt.Println("Приготовление...\n")
 				time.Sleep(3 * time.Second)
@@ -103,9 +100,7 @@ func CoffeeItem(m *Machine){
 			break
 
 		case 5:
-				fmt.Println("Пополнение ресурсов...\n")
 				time.Sleep(5*time.Second)
-				m.ReplenishRes()
 				amerStat++
 				fmt.Println("Приготовление...\n")
 				time.Sleep(3*time.Second)
@@ -149,7 +144,7 @@ func ResStat(m *Machine){
 
 func CoffeeStat(m *Machine){
 	fmt.Printf("\nЭспрессо:%d,\nКаппучино:%d," +
-		"\nМокачино:%d,\nРистретто:%d,\nАмерикано:%d",espStat,capStat,bamzStat,risStat,amerStat)
+		"\nМокачино:%d,\nРистретто:%d,\nАмерикано:%d",espStat,capStat,mokaStat,risStat,amerStat)
 	fmt.Println()
 	Mach(m)
 }
